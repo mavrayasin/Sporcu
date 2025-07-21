@@ -1,0 +1,74 @@
+﻿@model Sporcu.Entity.TblSporcu
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>TblSporcu</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TcKimlikNo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TcKimlikNo)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AdSoyad)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AdSoyad)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DogumTarihi)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DogumTarihi)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Cinsiyet)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Cinsiyet)
+        </dd>
+     
+     
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IlId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IlId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IlceId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IlceId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.LisansBaslangic)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LisansBaslangic)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.LisansBitis)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LisansBitis)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AktifMi)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AktifMi)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

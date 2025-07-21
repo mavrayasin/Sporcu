@@ -1,0 +1,24 @@
+---NuGet paketleri:
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+dotnet add package Microsoft.EntityFrameworkCore.Tools
+dotnet add package Microsoft.EntityFrameworkCore.Design
+
+dotnet tool install --global dotnet-ef
+
+
+dotnet ef dbcontext scaffold Name=DefaultConnection Microsoft.EntityFrameworkCore.SqlServer -o Entity --context-dir Data --context YasinDbContext -f
+
+----connection string appsettings. 
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=YASINKATANA\\SQLEXPRESS;Database=YasinDb; User Id=sa; Password=123;Trusted_Connection=True;Encrypt=False;"
+  },
+
+
+ --program.cs bazı ayarlamalar
+builder.Services.AddDbContext<YasinDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddControllersWithViews();
+
+
+app.UseRouting();
+app.MapDefaultControllerRoute();
