@@ -40,7 +40,7 @@ namespace Sporcu.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,TcKimlikNo,AdSoyad,DogumTarihi,Cinsiyet,SporDaliId,IlId,IlceId,LisansBaslangic,LisansBitis,AktifMi")] TblSporcu tblSporcu)
+        public async Task<IActionResult> Create([Bind("Id,TcKimlikNo,AdSoyad,DogumTarihi,Cinsiyet,IlId,IlceId,LisansBaslangic,LisansBitis,AktifMi")] TblSporcu tblSporcu)
         {
             await _sporcuService.AddSporcuAsync(tblSporcu);
             return RedirectToAction(nameof(Index));
@@ -58,7 +58,7 @@ namespace Sporcu.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,TcKimlikNo,AdSoyad,DogumTarihi,Cinsiyet,SporDaliId,IlId,IlceId,LisansBaslangic,LisansBitis,AktifMi")] TblSporcu tblSporcu)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,TcKimlikNo,AdSoyad,DogumTarihi,Cinsiyet,IlId,IlceId,LisansBaslangic,LisansBitis,AktifMi")] TblSporcu tblSporcu)
         {
 
             var tblSporcuResult = await _sporcuService.UpdateSporcuAsync(tblSporcu);
