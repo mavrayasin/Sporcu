@@ -4,36 +4,146 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Sporcu</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+@*     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Sporcu.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Sporcu.styles.css" asp-append-version="true" /> *@
+    <!-- Bootstrap 3.3.5 -->
+    <link rel="stylesheet" href="~/Content/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/Content/plugins/font-awesome/css/font-awesome.min.css">
+    <!-- AdminLTE -->
+    <link rel="stylesheet" href="~/Content/dist/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="~/Content/dist/css/skins/_all-skins.min.css">
+
 </head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Sporcu</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
+<body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
+
+        <header class="main-header">
+            <!-- Logo -->
+            <a href="#" class="logo">
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                <span class="logo-mini"><b>Ö</b>BS</span>
+                <!-- logo for regular state and mobile devices -->
+                <span class="logo-lg"><b>Öğrenci</b>BS</span>
+            </a>
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top" role="navigation">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
+                <div class="navbar-custom-menu">
+
+                    <!-- Notifications: style can be found in dropdown.less -->
+                    <!-- Tasks: style can be found in dropdown.less -->
+                    <!-- User Account: style can be found in dropdown.less -->
+                    <!-- Control Sidebar Toggle Button -->
+
+
                 </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+            </nav>
+        </header>
+        <!-- Left side column. contains the logo and sidebar -->
+        <aside class="main-sidebar">
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar">
+                <!-- Sidebar user panel -->
+                <div class="user-panel">
+                    <div class="pull-left image">
+                        <img src="/AdminLTE-2.3.0/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                    </div>
+                    <div class="pull-left info">
+                        <p>Admin</p>
+                        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                    </div>
+                </div>
+                <!-- search form -->
+                <form action="#" method="get" class="sidebar-form">
+                    <div class="input-group">
+                        <input type="text" name="q" class="form-control" placeholder="Search...">
+                        <span class="input-group-btn">
+                            <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+                </form>
+                <!-- /.search form -->
+                <!-- sidebar menu: : style can be found in sidebar.less -->
+                <ul class="sidebar-menu">
+
+                    <li class="treeview">
+                        <a href="/Admin/Index">
+                            <i class="fa fa-dashboard"></i> <span>Anasayfa</span> <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <!-- <ul class="treeview-menu"> -->
+                        <!-- <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li> -->
+                        <!-- <li><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li> -->
+                        <!-- </ul> -->
+                    </li>
+                    <li class="treeview">
+                        <a href="/Admin/Mufredat">
+                            <i class="fa fa-files-o"></i>
+                            <span>Müfredatlar</span>
+                            <span class="fa fa-angle-left pull-right"></span>
+                        </a>
+
+                    </li>
+
+                    <li class="treeview">
+                        <a href="/Admin/Dersler">
+                            <i class="fa fa-pie-chart"></i>
+                            <span>Dersler</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+
+                    </li>
+                    <li class="treeview">
+                        <a href="/Admin/MufredatDersList">
+                            <i class="fa fa-search"></i>
+                            <span>Müfredat Dersler</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+
+                    </li>
+                    <li class="treeview">
+                        <a href="/Admin/StudentList">
+                            <i class="fa fa-laptop"></i>
+                            <span>Öğrenciler</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+
+                    </li>
+                    <li class="treeview">
+                        <a href="/Auth/Logout">
+                            <i class="fa fa-sign-out"></i>
+                            <span>Çıkış Yap</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+
+                    </li>
+
+
+
+
+
+                </ul>
+            </section>
+            <!-- /.sidebar -->
+        </aside>
+
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+         
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                @RenderBody()
+            </section>
+        </div>
+
+
     </div>
 
     <footer class="border-top footer text-muted">
@@ -41,9 +151,16 @@
             &copy; 2025 - Sporcu - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+@*     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script> *@
+    <!-- jQuery 2.1.4 -->
+    <script src="~/Content/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <!-- Bootstrap 3.3.5 -->
+    <script src="~/Content/bootstrap/js/bootstrap.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/Content/dist/js/app.min.js"></script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

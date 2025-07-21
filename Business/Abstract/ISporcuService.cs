@@ -12,5 +12,7 @@ namespace Sporcu.Business.Abstract
         Task<int> DeleteSporcuAsync(int id);
         Task<List<SporcuSporDaliDTO>> GetSporcuRapor();
         Task<List<SporDetayCountDTO>> GetSporcuSayisiRapor();
+        Task<List<TblSporDali>> GetTblSporDalis();
+        Task AddSporcuSporDali(int sporcuId, int sporDaliId);
     }
 }

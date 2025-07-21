@@ -103,6 +103,25 @@ namespace Sporcu.Business.Concrete
             return sonucListe;
         }
 
+        public async Task<List<TblSporDali>> GetTblSporDalis()
+        {
+            var result = await _unitOfWork.TblSporDali.GetAllAsync();
+            return result.ToList();
+        }
+
+        public async Task AddSporcuSporDali(int sporcuId, int sporDaliId)
+        {
+            var sporcuSporDali = new TblSporcuSporDali
+            {
+                SporcuId = sporcuId,
+                SporDaliId = sporDaliId
+            };
+            await _dbContext.TblSporcuSporDalis.AddAsync(sporcuSporDali);
+            await _dbContext.SaveChangesAsync();
+            //await _unitOfWork.TblSporcuSporDali.AddAsync(sporcuSporDali);
+            //var result = await _unitOfWork.CompleteAsync();
+        }
+
         //public async Task<List<SporDetayCountDTO>> GetSporcuSayisiRapor()
         //{
         //    var sonucListe = await (from sporDali in _dbContext.TblSporDalis

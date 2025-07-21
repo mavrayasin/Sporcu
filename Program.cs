@@ -1,3 +1,4 @@
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
@@ -9,6 +10,7 @@ using Sporcu.Data;
 using Sporcu.Helpers;
 using Sporcu.Middlewares;
 using Sporcu.UnitOfWork;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,7 +30,9 @@ builder.Services.AddControllersWithViews(options =>
         .RequireAuthenticatedUser()
         .Build();
     options.Filters.Add(new AuthorizeFilter(policy));
-});
+})
+.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<TblSporcuValidator>());
+
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

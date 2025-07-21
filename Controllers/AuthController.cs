@@ -104,7 +104,7 @@ namespace Sporcu.Controllers
 
             return RedirectToAction("Index", "Sporcu");
         }
-        [HttpPost]
+        [HttpGet]
         public IActionResult Logout()
         {
             Response.Cookies.Delete("X-Access-Token");

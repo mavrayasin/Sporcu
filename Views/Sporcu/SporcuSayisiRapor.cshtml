@@ -2,44 +2,53 @@
 
 @{
     ViewData["Title"] = "SporcuSayisiRapor";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h1>SporcuSayisiRapor</h1>
 
+<div class="box box-info" style="width:550px; margin:0 auto;margin-top:180px; background-color:lightgray">
+    <!-- Horizontal Form -->
+    <div class="box-header with-border">
+        <h3 class="box-title">Giriş Yap</h3>
+    </div><!-- /.box-header -->
+    <!-- form start -->
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    İd
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.count)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.sporName)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.count)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.sporName)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                İd
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.count)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.sporName)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.id)
-                </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.count)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.sporName)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+</div>

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Sporcu.Business.Abstract;
 using Sporcu.Data;
+using Sporcu.Dtos;
 using Sporcu.Entity;
 using Sporcu.UnitOfWork;
 
@@ -40,10 +41,18 @@ namespace Sporcu.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,TcKimlikNo,AdSoyad,DogumTarihi,Cinsiyet,IlId,IlceId,LisansBaslangic,LisansBitis,AktifMi")] TblSporcu tblSporcu)
+        public async Task<IActionResult> Create(TblSporcu tblSporcu)
         {
-            await _sporcuService.AddSporcuAsync(tblSporcu);
-            return RedirectToAction(nameof(Index));
+            if (ModelState.IsValid)
+            {
+                await _sporcuService.AddSporcuAsync(tblSporcu);
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                return View(tblSporcu);
+            }
+
         }
 
         // GET: TblSporcus/Edit/5
@@ -92,6 +101,43 @@ namespace Sporcu.Controllers
             var sporcuSayisiRapor = await _sporcuService.GetSporcuSayisiRapor();
             return View(sporcuSayisiRapor);
 
+        }
+        public async Task<IActionResult> SporDaliUserAdd()
+        {
+
+            var sporDaliList = await _sporcuService.GetTblSporDalis();
+            var sporcuList = await _sporcuService.GetAllSporcuAsync();
+            //sporDaliList.ConvertAll(sporDaliList => new SelectListItem
+            //{
+            //    Value = sporDaliList.Id.ToString(),
+            //    Text = sporDaliList.Ad
+            //}); 
+
+
+
+            var dto = new SporcuSporDaliAddDTO
+            {
+                SporDaliListesi = sporDaliList.Select(x => new SelectListItem
+                {
+                    Value = x.Id.ToString(),
+                    Text = x.Ad // veya gösterilecek alan
+                }).ToList(),
+                SporcuListesi = sporcuList.Select(x => new SelectListItem
+                {
+                    Value = x.Id.ToString(),
+                    Text = x.AdSoyad // veya gösterilecek alan
+                }).ToList()
+            };
+
+            return View(dto);
+        }
+
+        [HttpPost]
+        [Route("Sporcu/SporDaliUserAddMetod")]
+        public IActionResult SporDaliUserAddMetod(int SporcuId, int SporDaliId)
+        {
+            var result =  _sporcuService.AddSporcuSporDali(SporcuId,SporDaliId);
+            return Ok("Ekleme Başarılı");
         }
     }
 }
