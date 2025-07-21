@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Sporcu.Entity;
-using Sporcu.Dtos;
 
 namespace Sporcu.Data;
 
@@ -26,6 +25,8 @@ public partial class SporcuTakipDbContext : DbContext
     public virtual DbSet<TblSporcu> TblSporcus { get; set; }
 
     public virtual DbSet<TblSporcuSporDali> TblSporcuSporDalis { get; set; }
+
+    public virtual DbSet<UserSporcu> UserSporcus { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseSqlServer("Name=DefaultConnection");
@@ -86,12 +87,25 @@ public partial class SporcuTakipDbContext : DbContext
             entity.ToTable("TblSporcuSporDali");
         });
 
+        modelBuilder.Entity<UserSporcu>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK_User");
+
+            entity.ToTable("UserSporcu");
+
+            entity.Property(e => e.Password)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.PasswordHash)
+                .HasMaxLength(100)
+                .IsUnicode(false);
+            entity.Property(e => e.Username)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+        });
+
         OnModelCreatingPartial(modelBuilder);
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
-
-public DbSet<Sporcu.Dtos.SporcuSporDaliDTO> SporcuSporDaliDTO { get; set; } = default!;
-
-public DbSet<Sporcu.Dtos.SporDetayCountDTO> SporDetayCountDTO { get; set; } = default!;
 }
